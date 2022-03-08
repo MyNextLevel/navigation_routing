@@ -1,11 +1,6 @@
-// Copyright 2021, the Flutter project authors. Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
 
-import '../auth.dart';
 import '../routing.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -38,9 +33,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 }
 
 class SettingsContent extends StatelessWidget {
-  const SettingsContent({
-    Key? key,
-  }) : super(key: key);
+  const SettingsContent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Column(
@@ -49,12 +42,6 @@ class SettingsContent extends StatelessWidget {
             Text(
               'Settings',
               style: Theme.of(context).textTheme.headline4,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                BookstoreAuthScope.of(context).signOut();
-              },
-              child: const Text('Sign out'),
             ),
             Link(
               uri: Uri.parse('/book/0'),

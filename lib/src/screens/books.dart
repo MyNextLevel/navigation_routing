@@ -1,7 +1,3 @@
-// Copyright 2021, the Flutter project authors. Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 
 import '../data.dart';
@@ -9,9 +5,7 @@ import '../routing.dart';
 import '../widgets/book_list.dart';
 
 class BooksScreen extends StatefulWidget {
-  const BooksScreen({
-    Key? key,
-  }) : super(key: key);
+  const BooksScreen({Key? key}) : super(key: key);
 
   @override
   _BooksScreenState createState() => _BooksScreenState();
@@ -55,18 +49,9 @@ class _BooksScreenState extends State<BooksScreen>
           bottom: TabBar(
             controller: _tabController,
             tabs: const [
-              Tab(
-                text: 'Popular',
-                icon: Icon(Icons.people),
-              ),
-              Tab(
-                text: 'New',
-                icon: Icon(Icons.new_releases),
-              ),
-              Tab(
-                text: 'All',
-                icon: Icon(Icons.list),
-              ),
+              Tab(text: 'Popular', icon: Icon(Icons.people)),
+              Tab(text: 'New', icon: Icon(Icons.new_releases)),
+              Tab(text: 'All', icon: Icon(Icons.list)),
             ],
           ),
         ),
