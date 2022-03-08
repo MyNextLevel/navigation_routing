@@ -1,20 +1,30 @@
+// Copyright 2021, the Flutter project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:url_strategy/url_strategy.dart';
 
-void main() => runApp(const MyApp());
+import 'src/app.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+void main() {
+  // Use package:url_strategy until this pull request is released:
+  // https://github.com/flutter/flutter/pull/77103
 
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Navigation Routing',
-      home: Scaffold(
-        body: Center(
-          child: Text('Home page'),
-        ),
-      ),
-    );
-  }
+  // Use to setHashUrlStrategy() to use "/#/" in the address bar (default). Use
+  // setPathUrlStrategy() to use the path. You may need to configure your web
+  // server to redirect all paths to index.html.
+  //
+  // On mobile platforms, both functions are no-ops.
+  // setHashUrlStrategy();
+  setPathUrlStrategy();
+
+  runApp(const Bookstore());
 }
+
+const double windowWidth = 480;
+const double windowHeight = 854;
+
