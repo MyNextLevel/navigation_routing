@@ -5,5 +5,5 @@ import 'src/app.dart';
 
 void main() {
   setPathUrlStrategy();
-  runApp(const Bookstore());
+  runApp(const PortfolioApp());
 }

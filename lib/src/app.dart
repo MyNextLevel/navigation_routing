@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'routing.dart';
 import 'screens/navigator.dart';
 
-class Bookstore extends StatefulWidget {
-  const Bookstore({Key? key}) : super(key: key);
+class PortfolioApp extends StatefulWidget {
+  const PortfolioApp({Key? key}) : super(key: key);
 
   @override
-  _BookstoreState createState() => _BookstoreState();
+  _PortfolioAppState createState() => _PortfolioAppState();
 }
 
-class _BookstoreState extends State<Bookstore> {
+class _PortfolioAppState extends State<PortfolioApp> {
   final _navigatorKey = GlobalKey<NavigatorState>();
   late final RouteState _routeState;
   late final SimpleRouterDelegate _routerDelegate;
@@ -20,15 +20,12 @@ class _BookstoreState extends State<Bookstore> {
   void initState() {
     _routeParser = TemplateRouteParser(
       allowedPaths: [
-        '/authors',
-        '/settings',
-        '/books/new',
-        '/books/all',
-        '/books/popular',
-        '/book/:bookId',
-        '/author/:authorId',
+        '/',
+        '/works',
+        '/blog',
+        '/contact',
+        '/work/:workId',
       ],
-      initialRoute: '/books/popular',
     );
 
     _routeState = RouteState(_routeParser);
@@ -36,7 +33,7 @@ class _BookstoreState extends State<Bookstore> {
     _routerDelegate = SimpleRouterDelegate(
       routeState: _routeState,
       navigatorKey: _navigatorKey,
-      builder: (context) => BookstoreNavigator(
+      builder: (context) => PortfolioNavigator(
         navigatorKey: _navigatorKey,
       ),
     );

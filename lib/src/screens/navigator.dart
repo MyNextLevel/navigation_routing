@@ -8,21 +8,19 @@ import 'author_details.dart';
 import 'book_details.dart';
 import 'scaffold.dart';
 
-class BookstoreNavigator extends StatefulWidget {
+class PortfolioNavigator extends StatefulWidget {
   final GlobalKey<NavigatorState> navigatorKey;
 
-  const BookstoreNavigator({required this.navigatorKey, Key? key})
+  const PortfolioNavigator({required this.navigatorKey, Key? key})
       : super(key: key);
 
   @override
-  _BookstoreNavigatorState createState() => _BookstoreNavigatorState();
+  _PortfolioNavigatorState createState() => _PortfolioNavigatorState();
 }
 
-class _BookstoreNavigatorState extends State<BookstoreNavigator> {
-  final _signInKey = const ValueKey('Sign in');
+class _PortfolioNavigatorState extends State<PortfolioNavigator> {
   final _scaffoldKey = const ValueKey('App scaffold');
-  final _bookDetailsKey = const ValueKey('Book details screen');
-  final _authorDetailsKey = const ValueKey('Author details screen');
+  final _workDetailsKey = const ValueKey('Book details screen');
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +28,9 @@ class _BookstoreNavigatorState extends State<BookstoreNavigator> {
     final pathTemplate = routeState.route.pathTemplate;
 
     Book? selectedBook;
-    if (pathTemplate == '/book/:bookId') {
+    if (pathTemplate == '/work/:workId') {
       selectedBook = libraryInstance.allBooks.firstWhereOrNull(
-          (b) => b.id.toString() == routeState.route.parameters['bookId']);
+          (b) => b.id.toString() == routeState.route.parameters['workId']);
     }
 
     Author? selectedAuthor;
@@ -45,15 +43,9 @@ class _BookstoreNavigatorState extends State<BookstoreNavigator> {
       key: widget.navigatorKey,
       onPopPage: (route, dynamic result) {
         if (route.settings is Page &&
-            (route.settings as Page).key == _bookDetailsKey) {
-          routeState.go('/books/popular');
+            (route.settings as Page).key == _workDetailsKey) {
+          routeState.go('/');
         }
-
-        if (route.settings is Page &&
-            (route.settings as Page).key == _authorDetailsKey) {
-          routeState.go('/authors');
-        }
-
         return route.didPop(result);
       },
       pages: [
@@ -64,18 +56,9 @@ class _BookstoreNavigatorState extends State<BookstoreNavigator> {
           ),
           if (selectedBook != null)
             MaterialPage<void>(
-              key: _bookDetailsKey,
-              child: BookDetailsScreen(
-                book: selectedBook,
-              ),
+              key: _workDetailsKey,
+              child: BookDetailsScreen(book: selectedBook),
             )
-          else if (selectedAuthor != null)
-            MaterialPage<void>(
-              key: _authorDetailsKey,
-              child: AuthorDetailsScreen(
-                author: selectedAuthor,
-              ),
-            ),
         ],
       ],
     );
